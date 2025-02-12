@@ -1,6 +1,3 @@
-알겠습니다. `profit.py` 파일을 수정하여 지수 데이터를 불러오는 부분을 `generate_profit_table` 함수 위에 배치하고, 반복문 안에서 그래프를 그리는 코드를 추가하겠습니다.
-
-```python
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -87,4 +84,4 @@ for buy_threshold in range(100, 155, 5):
 
         # 7. 그래프 표시
         plt.show()
-```
+
