@@ -91,4 +91,3 @@ for cci_period in range(5, 21):
             fig_manager = plt.get_current_fig_manager()
             fig_manager.window.state('zoomed')
             plt.show()
-```
