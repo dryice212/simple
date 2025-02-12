@@ -1,9 +1,13 @@
+`multiprofit.py` 파일을 수정하여 그래프 타이틀에 현재 `cci_period`, `buy_threshold`, `sell_threshold` 값을 표시하도록 하겠습니다.
+
+```python
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from sqlalchemy import create_engine
 import mplcursors
 from add_signals import add_signals_to_db
+import tkinter as tk
 
 # 데이터베이스 연결
 DB_PATH = "data/kospi200.db"
@@ -56,7 +60,7 @@ for buy_threshold in range(100, 155, 5):
         ax1.plot(df['date'], df['close'], label='KOSPI 200', color='blue')
         ax1.scatter(df['date'][df['buy_signal'] == 1], df['close'][df['buy_signal'] == 1], marker='^', color='green', label='Buy Signal', alpha=1)
         ax1.scatter(df['date'][df['sell_signal'] == 1], df['close'][df['sell_signal'] == 1], marker='v', color='red', label='Sell Signal', alpha=1)
-        ax1.set_title("KOSPI 200 with Buy/Sell Signals")
+        ax1.set_title(f"CCI Period: 7, Buy Threshold: {buy_threshold}, Sell Threshold: {sell_threshold}")
         ax1.set_xlabel("Date")
         ax1.set_ylabel("Index Price")
         ax1.legend()
@@ -82,6 +86,12 @@ for buy_threshold in range(100, 155, 5):
         mplcursors.cursor(ax1, hover=True)
         mplcursors.cursor(ax2, hover=True)
 
-        # 7. 그래프 표시
+        # 7. 그래프 표시 (전체화면으로 설정)
+        root = tk.Tk()
+        root.withdraw()
+        fig_manager = plt.get_current_fig_manager()
+        fig_manager.window.state('zoomed')
         plt.show()
+```
 
+이 코드는 그래프 타이틀에 현재 `cci_period`, `buy_threshold`, `sell_threshold` 값을 포함하도록 수정되었습니다.
