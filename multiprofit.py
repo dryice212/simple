@@ -1,6 +1,3 @@
-그렇습니다. 그 부분은 `generate_profit_table` 함수 안에 들어가야 합니다. 수정된 코드는 다음과 같습니다:
-
-```python
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
