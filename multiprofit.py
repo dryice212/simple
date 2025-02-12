@@ -41,7 +41,8 @@ def generate_profit_table():
 
     # 데이터프레임 변환
     trade_df = pd.DataFrame(trade_history)
-    trade_df.to_sql('returns_data', engine, if_exists='replace', index=False)
+    if not trade_df.empty:
+        trade_df.to_sql('returns_data', engine, if_exists='replace', index=False)
 
 for cci_period in range(5, 21):
     for buy_threshold in range(100, 155, 5):
