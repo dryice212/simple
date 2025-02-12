@@ -1,8 +1,3 @@
-알겠습니다. 독립적으로 데이터베이스에서 데이터를 불러와서 매수 매도 신호를 추가하는 파일을 만들어 드리겠습니다.
-
-새 파일 `add_signals.py`에 다음 코드를 넣으세요:
-
-```python
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -78,6 +73,4 @@ def add_signals_to_db():
 
 if __name__ == '__main__':
     add_signals_to_db()
-```
 
-이 파일은 데이터베이스에서 데이터를 불러와 매수 및 매도 신호를 추가한 후 다시 데이터베이스에 저장합니다. `add_signals.py` 파일을 실행하면 됩니다.
