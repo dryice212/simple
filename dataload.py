@@ -63,6 +63,6 @@ def fetch_and_store_kospi200(start_date, end_date):
 
 if __name__ == '__main__':
     start_date = '2010-01-02'
-    end_date = '2025-02-07'
+    end_date = datetime.today().strftime('%Y-%m-%d')
     create_database()
     fetch_and_store_kospi200(start_date, end_date)
