@@ -84,10 +84,16 @@ for cci_period in range(5, 21):
             # 6. mplcursors 활성화 (필요한 경우)
             mplcursors.cursor(ax1, hover=True)
             mplcursors.cursor(ax2, hover=True)
-
+            
+            # 7. 그래프 저장 (파일로 저장)
+            filename = f"cci_{cci_period}_buy_{buy_threshold}_sell_{sell_threshold}.png"
+            plt.savefig(filename)
+            plt.close(fig)
+'''           
             # 7. 그래프 표시 (전체화면으로 설정)
             root = tk.Tk()
             root.withdraw()
             fig_manager = plt.get_current_fig_manager()
             fig_manager.window.state('zoomed')
             plt.show()
+'''
