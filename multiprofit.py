@@ -42,8 +42,17 @@ def generate_profit_table():
     # 데이터프레임 변환
     trade_df = pd.DataFrame(trade_history)
     if not trade_df.empty:
-        trade_df.to_sql('returns_data', engine, if_exists='replace', index=False)
+        # Count all profit values
+        total_profits_count = trade_df['profit'].count()
+    
+        # Count profit values greater than 0
+        positive_profits_count = (trade_df['profit'] > 0).sum()
 
+        # Calculate percentage of positive profits
+        positive_profits_percentage = (positive_profits_count / total_profits_count) * 100
+    
+        trade_df.to_sql('returns_data', engine, if_exists='replace', index=False)
+    
 for cci_period in range(5, 21):
     for buy_threshold in range(100, 155, 5):
         for sell_threshold in range(-100, -155, -5):
@@ -59,7 +68,7 @@ for cci_period in range(5, 21):
             ax1.plot(df['date'], df['close'], label='KOSPI 200', color='blue')
             ax1.scatter(df['date'][df['buy_signal'] == 1], df['close'][df['buy_signal'] == 1], marker='^', color='green', label='Buy Signal', alpha=1)
             ax1.scatter(df['date'][df['sell_signal'] == 1], df['close'][df['sell_signal'] == 1], marker='v', color='red', label='Sell Signal', alpha=1)
-            ax1.set_title(f"CCI Period: {cci_period}, Buy Threshold: {buy_threshold}, Sell Threshold: {sell_threshold}")
+            ax1.set_title(f"CCI Period: {cci_period}, Buy Threshold: {buy_threshold}, Sell Threshold: {sell_threshold}, Total Profits: {total_profits_count}, Positive Profits: {positive_profits_percentage:.2f}%")
             ax1.set_xlabel("Date")
             ax1.set_ylabel("Index Price")
             ax1.legend()
