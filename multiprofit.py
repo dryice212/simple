@@ -53,12 +53,13 @@ def generate_profit_table():
         positive_profits_percentage = (positive_profits_count / total_profits_count) * 100
     
         trade_df.to_sql('returns_data', engine, if_exists='replace', index=False)
-    
+    return total_profits_count, positive_profits_percentage
+
 for cci_period in range(5, 21):
     for buy_threshold in range(100, 155, 5):
         for sell_threshold in range(-100, -155, -5):
             add_signals_to_db(cci_period=cci_period, buy_threshold=buy_threshold, sell_threshold=sell_threshold)
-            generate_profit_table()
+            total_profits_count, positive_profits_percentage = generate_profit_table()
 
             # 1. Figure와 Subplots 생성
             fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 12), sharex=True)  # x축 공유
