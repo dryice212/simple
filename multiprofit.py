@@ -41,6 +41,7 @@ def generate_profit_table():
 
     # 데이터프레임 변환
     trade_df = pd.DataFrame(trade_history)
+    total_profits_count, positive_profits_percentage = 0, 0
     if not trade_df.empty:
         # Count all profit values
         total_profits_count = trade_df['profit'].count()
